@@ -28,16 +28,60 @@ const readline = require('readline-sync');
 
 const hasTorch = true;
 const hasMap = false;
+const hasSword = true;
+const hasCompass = false;
 
-console.log("You see two paths: one leads to the mountains, the other to the village.");
-const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
+console.log("You see four paths: one leads to the mountains, the other to the village, to the forest and one into the cave.");
+const choice = readline.question("Do you go to the 'mountains', the 'village', the 'forest' or the 'cave'?");
 
 if (choice === "mountains" && hasTorch) {
   console.log("You safely navigate through the dark mountains.");
+
+  // Nested conditional
+  console.log("Suddenly, a wild beast blocks your path!");
+  if (hasSword) {
+    console.log("You fight bravely with your sword and defeat the beast.");
+  } else {
+    console.log("You have no weapon. the beast chases you away!");
+  }
+
 } else if (choice === "mountains" && !hasTorch) {
   console.log("It's too dark to proceed. You decide to turn back.");
+
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
+  
+  // Nested conditional - another scenario
+  if (hasCompass) {
+    console.log("With the compass, you discover a hidden shortcut and arrive faster.");
+  } else {
+    console.log("It takes longer, but you eventually reach the village.");
+  }
+
+} else if (choice === "forest") {
+  console.log("The forest is dense and full of strange sounds.");
+
+  if (hasTorch && hasSword) {
+    console.log("With light and protection, you make it through safely.");
+  } else if (hasTorch && !hasSword) {
+    console.log("You can see the way, but without a weapon, you are forced to flee from predators.");
+  } else if (!hasTorch && hasCompass) {
+    console.log("You know the direction with your compass, but it's too dark to continue.");
+  } else {
+    console.log("You are swallowed by the darkness of the forest.");
+  }
+
+} else if (choice === "cave") {
+  console.log("You discover a mysterious cave.");
+
+  if (hasTorch && (hasSword || hasCompass)) {
+    console.log("You explore the cave, fighting off dangers and navigating with ease.");
+  } else if (!hasTorch && hasCompass) {
+    console.log("You know the way, but without light, you cannot proceed.");
+  } else {
+    console.log("You stumble in the dark and retreat.");
+  }
+
 } else {
   console.log("You get lost and wander aimlessly.");
 }
