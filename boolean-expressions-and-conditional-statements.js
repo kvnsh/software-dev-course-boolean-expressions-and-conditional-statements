@@ -51,7 +51,7 @@ if (choice === "mountains" && hasTorch) {
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
   
-  // Nested conditional - another scenario
+  // Nested conditional -  another scenario
   if (hasCompass) {
     console.log("With the compass, you discover a hidden shortcut and arrive faster.");
   } else {
